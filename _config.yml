@@ -1,2 +1,4 @@
 name: 808s and linebreak
 markdown: kramdown
+
+permalink: /blog/:year/:month/:day/:title
