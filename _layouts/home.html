@@ -1,0 +1,21 @@
+---
+layout: default
+title: 808s and Linebreak
+---
+
+<div class="two-thirds column">
+
+    {% for post in site.posts limit:4 %}
+
+        <h3>
+            <a class = homeTitle href="{{ post.url }}">{{ post.title }}</a>
+        </h3>
+        <span>{{ post.date | date: '%B' }} {{ post.date | date: '%e' }}, {{ post.date | date: '%Y' }}</span>
+        <p>
+            {{ post.excerpt | markdownify }}
+            <span class="more"><a href="{{ post.url }}">More...</a></span>
+        </p>
+
+    {% endfor %}
+
+</div>
