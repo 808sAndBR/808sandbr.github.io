@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Distance from Countries' Geographic Centers to their Capitol City's"
+title: "Distance from Countries' Geographic Centers to their Capitol Cities"
 date: 2015-01-08
 ---
 <p>
