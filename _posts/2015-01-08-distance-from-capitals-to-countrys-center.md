@@ -4,7 +4,7 @@ title: "Distance from Countries' Geographic Centers to their Capital Cities"
 date: 2015-01-08
 ---
 <p>
-    I wanted to visualize the distance and direction that each country's capitol is from it's geographic center. I set each countries geographic center to 0 latitude, 0 longitude and plotted each capitol in it's relative latitudinal/longitudinal position (scale based on <a href = "http://en.wikipedia.org/wiki/Decimal_degrees"> decimal degrees</a>).
+    I wanted to visualize the distance and direction that each country's capitol is from its geographic center. I set each countries geographic center to 0 latitude, 0 longitude and plotted each capitol in its relative latitudinal/longitudinal position (scale based on <a href = "http://en.wikipedia.org/wiki/Decimal_degrees"> decimal degrees</a>).
 </p>
 <iframe src="/dataVis/capitals/capitals-with-russia.html" width="1050" height="500" marginwidth="0" marginheight="0" frameBorder="0" seamless="seamless" scrolling="no"></iframe>
 
