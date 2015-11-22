@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Coursera Machine Learning Project"
+title: "Coursera Machine Learning 2EaxesProject"
 date: 2015-11-21
 ---
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -65,14 +65,6 @@ img {
 }
 </style>
 <div class="container-fluid main-container">
-
-
-<div id="header">
-<h1 class="title">Prediction Assignment</h1>
-<h4 class="author"><em>Scott Brenstuhl</em></h4>
-<h4 class="date"><em>November 15, 2015</em></h4>
-</div>
-
 
 <pre class="r"><code>library(caret)
 library(doMC)
