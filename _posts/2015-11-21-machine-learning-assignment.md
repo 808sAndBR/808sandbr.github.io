@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Coursera Machine Learning 2EaxesProject"
+title: "Coursera Machine Learning Project"
 date: 2015-11-21
 ---
 <html xmlns="http://www.w3.org/1999/xhtml">
