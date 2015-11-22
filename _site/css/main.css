@@ -1,0 +1,92 @@
+body {
+    margin: 0px auto;
+    width: 1000px;
+}
+
+nav ul, footer ul {
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    padding: 0px;
+    list-style: none;
+    font-weight: bold;
+}
+nav ul li, footer ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+h1.blog{
+    border-bottom: 1px solid #d5d5d5;
+    padding: 0px 0px 5px 0px;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+}
+a:hover {
+    text-decoration: underline;
+}
+h1 {
+    font-size: 3em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+p {
+    font-size: 1.5em;
+    line-height: 1.4em;
+    color: #333;
+}
+footer {
+    width:1000px;
+    border-top: 1px solid #d5d5d5;
+    font-size: .8em;
+    margin: 50px 0px 0px 0px;
+    float:left;
+}
+
+footer ul{
+    margin-left: 10px
+}
+
+
+ul.posts { 
+    margin: 20px auto 40px; 
+    font-size: 1.5em;
+}
+
+ul.posts li {
+    list-style: none;
+}
+
+
+#aboutPic {
+    background: url(/img/scott.jpg) no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    overflow:hidden;
+    -webkit-border-radius:75px;
+    -moz-border-radius:75px;
+    border-radius:75px;
+    width:150px;
+    height:150px;
+    float:left;
+    margin: 35px 25px 0px 0px;
+}
+
+#aboutp {
+    float: left;
+    width: 80%;
+}
+
+a.homeTitle {
+    font-size: 1.5em;
+}
+
+div.sources {
+    margin-top: 20px;
+    margin-bottom: -40px;
+    font-size: .8em;
+    color: #999;
+}
