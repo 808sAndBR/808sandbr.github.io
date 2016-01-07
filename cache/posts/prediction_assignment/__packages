@@ -1,0 +1,10 @@
+base
+lattice
+ggplot2
+caret
+foreach
+iterators
+doMC
+printr
+plotly
+reshape2

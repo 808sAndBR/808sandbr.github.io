@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>{{ page.title }}</title>
+			<!-- link to main stylesheet -->
+			<link rel="stylesheet" type="text/css" href="/css/main.css">
+			{% include analytics.html %}
+		</head>
+		<body>
+			<nav>
+	    		<ul>
+	        		<li><a href="/">Home</a></li>
+		        	<li><a href="/about">About</a></li>
+	    		</ul>
+	    		<h1 class= "blog"> 808s & Linebreak</h1>
+			</nav>
+			<div class="container">
+			
+			{{ content }}
+			
+			</div><!-- /.container -->
+			<footer>
+	    		<ul>
+	        		<li><a href = "https://github.com/808sAndBR" target = "_blank">
+	        			<img src = "/img/github-24.png" alt = "github">
+	        		</a></li>
+	        		<li><a href = "https://www.facebook.com/scott.brenstuhl" target = "_blank">
+	        			<img src = "/img/facebook-24.png" alt = "facebook">
+	        		</a></li>
+					<li><a href = "https://twitter.com/ScottBrenstuhl" target = "_blank">
+  						<img src = "/img/twitter-24.png" alt = "twitter">
+					</a></li>
+					<li><a href = "mailto:808sandbr@gmail.com" target = "_blank">
+	        			<img src = "/img/mail-24.png" alt = "e-mail">
+	        		</a></li>
+	        		<li><a href = "http://www.rdio.com/people/ScottBrenstuhl/" target = "_blank">
+	        			<img src = "/img/radio-24.png" alt = "rdio">
+	        		</a></li>
+				</ul>
+			</footer>
+		</body>
+	</html>

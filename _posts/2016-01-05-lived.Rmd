@@ -1,0 +1,39 @@
+---
+layout: post
+title: "lived"
+catagories: [test]
+tags: [test, test2]
+---
+
+title: "Where I have lived"
+author: "Scott Brenstuhl"
+date: "January 3, 2016"
+output: html_document
+
+```{r}
+library(leaflet)
+```
+
+```{r}
+city <- c("Lancaster, OH", "Oxford, OH", "Dayton, OH", "Palo Alto, CA")
+desc <- c("<strong>Lancaster, OH</strong> </br> A wonderful place to grow up and home to countless memories of playing at my grandparents' houses, driving arround with friends screaming lyrics to songs that should be embarising to love (but somehow aren't), and ideas that seemed briliant at the time but ultimately lead to injuries for me and/or my siblings.",
+          "<strong>Miami University (Oxford, OH)</strong> </br>",
+          "",
+          "")
+lat <- c(39.7193, 39.5075, 39.7594, 37.4292)
+lng <- c(-82.6053, -84.7467, -84.1917, -122.1381)
+places_data <- data.frame(city,desc, lat, lng)
+
+joh_lat <- c(37.7833, 39.5272, 36.1215, 35.1156, 34.4900, 33.4294, 35.0694, 35.1107, 33.3872, 34.2278, 32.4500, 32.7767, 32.5147, 32.2803, 33.5250, 33.7550, 34.6850, 35.2269, 37.5333, 38.9047)
+joh_lng <- c(-122.4167,-119.8219, -115.1739, -114.5886, -114.3089, -111.9431, -108.8467, -106.6100, -104.5281, -102.7294, -99.7500, -96.7970, -93.7472, -89.9983, -86.8130, -84.3900, -82.8147, -80.8433, -77.4667, -77.0164)
+joh <- data.frame(joh_lat, joh_lng)
+
+leaflet(data = places_data) %>%
+    addTiles() %>%
+    addMarkers(~lng, ~lat, popup = ~desc) %>%
+    addPolylines(data = joh, lng = ~joh_lng, lat = ~joh_lat,
+    fill = F, weight = 2, color = "#000000")
+    
+    
+
+```
