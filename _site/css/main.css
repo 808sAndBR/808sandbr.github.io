@@ -144,6 +144,19 @@ pre {
   .icon > svg path {
     fill: #828282; }
 
+#about_pic {
+  background: url(/img/scott.jpg) no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 150px;
+  width: 250px;
+  height: 250px;
+  float: left;
+  margin: 35px 25px 0px 0px; }
+
 /**
  * Site header
  */
