@@ -1,0 +1,115 @@
+---
+title: "Effects of Vitamin C on Guinea Pigs Tooth Growth"
+author: "Scott Brenstuhl"
+output: html_document
+---
+```{r echo=FALSE, message=FALSE}
+library(datasets)
+library(dplyr)
+library(ggplot2)
+```
+### Overview
+In this report we compare guinea pig tooth growth by the Vitamin C suppliment they recieve and dosage. After some exploriory analyis I will run t-tests and get confidency intervals for all the compair able groups and present my results, conclusions, and assumptions.
+
+### Exploritory Analysis & Basic Summary
+```{r echo=FALSE}
+qplot(len, facets=supp ~ dose, data = ToothGrowth, binwidth=2, main = "Histogram of Tooth Length by Suppliment and Dose")
+explore<-summarize(group_by(ToothGrowth,supp,dose), mean(len),max(len),min(len))
+names(explore) <- c("Suppliment", "Dose", "Average Length", "Maximum Length", "Minimum Length")
+print(explore)
+```
+
+Conveniently, the ToothGrow data set comes with R so we don't need to do anything to load it. First let's look at the above histogram and summary data that show the length of teeth seperated by the suppliment and dosage that the guiniea pigs recieved. At first glance, it looks like the dosage has a significant impact on length. Suppliment looks like it may also impact the length too, but have deminishing returns as the dosage increased (the means for 2 milligrams are almost equal).
+
+I have also included the basic summary of all ToothGrow data to help get a feel for the entire dataset:
+```{r}
+summary(ToothGrowth)
+```
+
+### Comparison
+
+```{r echo=FALSE}
+low <- filter(ToothGrowth, dose == .5)
+med <- filter(ToothGrowth, dose == 1)
+high <- filter(ToothGrowth, dose == 2)
+
+test<-rbind(t.test(len~supp, data=ToothGrowth),
+    t.test(len~supp, data=rbind(low,med)),
+    t.test(len~supp, data=rbind(med,high)),
+    t.test(len~supp, data=rbind(low,high)),
+    t.test(len~dose, data=rbind(low,med)),
+    t.test(len~dose, data=rbind(med,high)),
+    t.test(len~dose, data=rbind(low,high)),
+    t.test(len~dose, data=filter(rbind(low,med)),supp=="VC"),
+    t.test(len~dose, data=filter(rbind(med,high)),supp=="VC"),
+    t.test(len~dose, data=filter(rbind(low,high)),supp=="VC"),
+    t.test(len~dose, data=filter(rbind(low,med)),supp=="OJ"),
+    t.test(len~dose, data=filter(rbind(med,high)),supp=="OJ"),
+    t.test(len~dose, data=filter(rbind(low,high)),supp=="OJ"))
+
+ttest_data <- NULL
+for (i in test[,'conf.int']){ttest_data <- rbind(ttest_data,as.vector(i))}
+ttest_data <-cbind(ttest_data,test[,'p.value'])
+row.names(ttest_data) <- c("LenSupp_All","LenSupp_LM","LenSupp_MH","LenSupp_LH","LenDose_LM","LenDose_MH","LenDose_LH","LenDose_LM_VC","LenDose_MH_VC","LenDose_LH_VC","LenDose_LM_OJ","LenDose_MH_OJ","LenDose_LH_OJ")
+ttest_data <- cbind(ttest_data, ttest_data[,3] < .05)
+colnames(ttest_data) <- c("95ConfLower","95ConfUpper","pValue","Significant")
+print(ttest_data)
+```
+
+As you can see, I ran the t-test for every subset comparison that was obvious to me and grabbed the confidence intervals and the pValue. I also added a column that check if the p.Value is < .05 so that we can quickly see which we can say are significant with 95% confidence. I tried to be discriptive in the colum names with before the first underscore saying what is compaired, then the dosage (L=.5, M=1, H=2), and if there is more descriptors it is the suppliment. Examples:  
+LenSupp_LM = Compairing suppliments in the .5 and 1 dosage groups  
+LenDose\_LH\_VC = Compairing .5 and 2 dosage groups that recieved VC suppliment
+
+### Conclusions
+* Suppliment appears to have no impact on growth when looking at all observations, 1 vs 2 dosages, and .5 vs 2 dosages.
+* Suppliment does seem to have a possitive impact between .5 vs 1 dosaage. We want to be careful that this isn't data dredging though, and should research if there is other evidence to support suppliment differences having a bigger impact the lower the dose is.
+* Doseage increases teeth growth in every senario regardless of the suppliment.
+
+### Assumptions
+* The guinea pigs in this experement are an accurate representation of all guinea pigs.
+* The guinea pigs were randomly assigned their dossages and supliments.
+* The variences between the the groups are different, since there is nothing that implies otherwise
+* That (with the stated caveat) the impact of suppliments when the dossage is small is valid. With the mindset that when the dossage is small a suppliment may be able to provide a benifit that becomes irrelivent as dosages increase.
+
+
+# Appendix
+
+```{r eval=FALSE, message=FALSE}
+library(datasets)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r eval=FALSE}
+qplot(len, facets=supp ~ dose, data = ToothGrowth, binwidth=2, main = "Histogram of Tooth Length by Suppliment and Dose")
+explore<-summarize(group_by(ToothGrowth,supp,dose), mean(len),max(len),min(len))
+names(explore) <- c("Suppliment", "Dose", "Average Length", "Maximum Length", "Minimum Length")
+print(explore)
+```
+```{r eval=FALSE}
+low <- filter(ToothGrowth, dose == .5)
+med <- filter(ToothGrowth, dose == 1)
+high <- filter(ToothGrowth, dose == 2)
+
+test<-rbind(t.test(len~supp, data=ToothGrowth),
+    t.test(len~supp, data=rbind(low,med)),
+    t.test(len~supp, data=rbind(med,high)),
+    t.test(len~supp, data=rbind(low,high)),
+    t.test(len~dose, data=rbind(low,med)),
+    t.test(len~dose, data=rbind(med,high)),
+    t.test(len~dose, data=rbind(low,high)),
+    t.test(len~dose, data=filter(rbind(low,med)),supp=="VC"),
+    t.test(len~dose, data=filter(rbind(med,high)),supp=="VC"),
+    t.test(len~dose, data=filter(rbind(low,high)),supp=="VC"),
+    t.test(len~dose, data=filter(rbind(low,med)),supp=="OJ"),
+    t.test(len~dose, data=filter(rbind(med,high)),supp=="OJ"),
+    t.test(len~dose, data=filter(rbind(low,high)),supp=="OJ"))
+
+ttest_data <- NULL
+for (i in test[,'conf.int']){ttest_data <- rbind(ttest_data,as.vector(i))}
+ttest_data <-cbind(ttest_data,test[,'p.value'])
+row.names(ttest_data) <- c("LenSupp_All","LenSupp_LM","LenSupp_MH","LenSupp_LH","LenDose_LM","LenDose_MH","LenDose_LH","LenDose_LM_VC","LenDose_MH_VC","LenDose_LH_VC","LenDose_LM_OJ","LenDose_MH_OJ","LenDose_LH_OJ")
+ttest_data <- cbind(ttest_data, ttest_data[,3] < .05)
+colnames(ttest_data) <- c("95ConfLower","95ConfUpper","pValue","Significant")
+print(ttest_data)
+```

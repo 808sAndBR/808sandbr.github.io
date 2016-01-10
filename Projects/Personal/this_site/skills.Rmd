@@ -1,0 +1,60 @@
+---
+title: "skills"
+author: "Scott Brenstuhl"
+date: "January 9, 2016"
+output: html_document
+---
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(stringr)
+library(magrittr)
+
+skill_list <- c("Data Wrangling",
+                "R",
+                "Data Visualization",
+                "Python",
+                "Machine Learning",
+                "Desire to Learn"
+                )
+skill_level <- c(4,
+                 3,
+                 3,
+                 2,
+                 1,
+                 5
+                 )
+
+skills <- data.frame(skill_list, skill_level, 
+                     stringsAsFactors = FALSE)
+
+skills$skill_list <- str_wrap(skills$skill_list, width = 10)
+
+skills$skill_list <-factor(skills$skill_list, 
+                           levels = skills$skill_list)
+
+levels <- c("Constant Surprise Learnings", 
+            "Able to StackOverflow to a Solution",
+            "Exciting to Talk About",
+            "Almost Know What I'm Doing",
+            "Out of this World"
+            ) %>%
+            str_wrap(width = 25)
+
+fill_colors <- c("#5DA5DA","#5DA5DA","#5DA5DA",
+                 "#5DA5DA","#5DA5DA","#B276B2")
+
+ggplot(data = skills, aes(x = skill_list, y = skill_level)) +
+    scale_y_discrete(breaks = 1:5, labels = levels) +
+    labs(x = '', y = '')+
+    geom_bar(stat="identity", fill = fill_colors)+
+    theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        axis.ticks= element_blank())
+
+ggsave("../../../img/skills.png")
+#FAA43A - orange
+```
+

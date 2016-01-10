@@ -1,0 +1,106 @@
+---
+title: "MPG by Transmission"
+author: "Scott Brenstuhl"
+output: html_document
+---
+```{r echo=FALSE, message=FALSE}
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(GGally)
+data("mtcars")
+```
+##### Executive Summary
+Using the 1974 Motor Trend data we look into if shifting using manual transmission actually gets better mpg as is comonly believed. By compairing the average mpg for each transmission type, we find that manuals get 7.24 more miles per gallon. However once we account for many of the addional variables that contribute to mpg, the mpg advantage of manual transmissions shrinks to an average of 2.94 more mpg. Still, we are able to confirm having a manual transmission will get you better mpg.
+
+##### Exploritory analysis
+By making a boxplot of MPH and transmission (Fig 1) we can see that at first glance manuals tend to have better MPG. We can then make a matrix of plots to see how the values we are interested in interact (Fig 2). 
+
+```{r echo = FALSE}
+summarize(group_by(mtcars, am),mean(mpg))
+```
+
+By taking the average mpg for both automatic trasnmission and manual transmission we can see that the average manual has 7.24 higher miles per gallon.
+
+```{r echo=FALSE}
+autoTrans <- mtcars[mtcars$am==0,]
+manTrans <- mtcars[mtcars$am==1,]
+paste('p-value:',t.test(autoTrans$mpg, manTrans$mpg)$p.value)
+```
+
+We then run a t-test of the two and reject the null hypothesis with a p-value of .00137, showing that the difference between transmissions is significant.
+
+##### Fitting Models
+```{r echo= FALSE}
+basicSum <- summary(lm(mpg~factor(am), data=mtcars))$coef
+rsq <- summary(lm(mpg~factor(am), data=mtcars))$r.squared
+basicSum
+paste('r squared:',rsq)
+```
+By fitting a model for just the the mpg predicted by the transmission type, we see that it does offer a statistically significant improvement from just average mpg. However this only explains 36% of the variance so we can't confidently draw any conclusions from it. 
+
+```{r echo=FALSE}
+sort(abs(cor(mtcars)[1,]),decreasing = TRUE)
+```
+By looking at the absolute values of MPG correlations we can see that wt, cyl, disp, and hp are all have strong corelations with mpg. While we can walk though these values and build a pretty good model (Fig 4), we lose the significance of transmissions which is what we are interested in.
+
+Luckly we can run a function to quickly go throught the confounders and pick the best model, which happens to show that transmission is significant:
+```{r echo=FALSE, results='hide'}
+lml <- lm(mpg~.,data=mtcars)
+slml <- step(lml)
+```
+```{r echo=FALSE}
+summary(slml)$call
+paste('r squared:',summary(slml)$r.squared)
+```
+
+By looking at the full corelation grid (Fig 4, visualized: Fig 2) we can see that many of the variables strongly affect one another so it makes sense that qsec is able to represent many of the variables in our data. With this model allowing us to address transmission, explaining 85% of variation is great.
+
+##### Residual Plot and Diagnostics
+
+```{r}
+sort(hatvalues(slml),decreasing = TRUE)[1:5]
+```
+
+We check the leverage of our data by looking at the highest hat values and see that we have a couple of cars with over two times the mean hat value of .125. However when we look at Fig 5, they dont appear to be anything to worry about. We can also see that there are not any obvious trends in the fitted vs residual or leverage plots, and the Normal Q-Q plot shows that the residuals are fairly normally distributed.
+
+##### Conclusions
+```{r echo =FALSE}
+summary(slml)$coef
+```
+
+While we have some uncertainty since there are not identical models with each transmission, we can feel fairly confident in our conclusions since our model explains 85% of the variability. With p-value .0467 < .05 we reject the null hypothesis and accept that manual transmissions have an average of 2.94 better mpg than automatic transmissions.
+
+# Appendix
+Fig 1:
+```{r echo = FALSE, fig.height=3,fig.width=3}
+boxplot(mpg~am, data=mtcars, xlab='Transmission', ylab='MPG', main= 'MPG by transmissions')
+```
+
+Fig 2:
+```{r cache = TRUE, echo=FALSE}
+p <- ggpairs(mtcars, lower = list(continuous = "smooth"), params = c( method = "loess"))
+print(p)
+```
+
+Fig 3:
+```{r, echo=FALSE}
+fit <- lm(mpg ~ factor(am), data = mtcars)
+fit2 <- lm(mpg ~ factor(am) + wt, data = mtcars)
+fit3 <- lm(mpg ~ factor(am) + wt + cyl, data = mtcars)
+fit4 <- lm(mpg ~ factor(am) + wt + cyl * hp, data = mtcars)
+anova(fit, fit2, fit3, fit4)
+summary(fit4)$coef
+paste('r squared:',summary(fit4)$r.squared)
+```
+
+Fig 4:
+```{r, echo=FALSE}
+cor(mtcars)
+```
+
+Fig 5:
+```{r echo=FALSE, fig.width=4,fig.width=5}
+par(mfrow=c(2,2))
+plot(slml)
+```

@@ -1,0 +1,156 @@
+---
+title: 'Exponential Distribution: Simulation vs Theoretical'
+author: "Scott Brenstuhl"
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document: default
+---
+### Overview
+In this report we will first create a simmulation of an exponential distribution. Then we will compare it's means, varience, and distributions to the theoretical values of an exponential distribution which has infinite samples.
+
+### Simulations
+```{r echo=FALSE}
+library(ggplot2)
+```
+
+To simulate the exponential distribution, I replicated exponential distributions (using rexp()) with 40 observations and a rate of lambda =.2 a thousand times and took the mean and variance of each. 
+
+```{r}
+set.seed(123)
+lambda <- .2
+num_sim <- 1000
+sim_data <- matrix(replicate(num_sim,rexp(40,lambda)),num_sim)
+means <- apply(sim_data, 1, mean)
+vars <-apply(sim_data, 1, var)
+```
+
+### Sample Mean versus Theoretical Mean
+```{r echo = FALSE, fig.width=6}
+g <- ggplot(data.frame(means), aes(x = means)) + geom_histogram(alpha = .80, binwidth=.3, colour = "black",aes(y = ..density..)) 
+g <- g + geom_vline(aes(xintercept=1/lambda, color="Theoretical Mean", linetype="Theoretical Mean"), size=2, show_guide=TRUE)
+g <- g + geom_vline(aes(xintercept=mean(means), color="Simulated Mean", linetype="Simulated Mean"), size=2, show_guide=TRUE)
+g <- g + labs(x = "Mean of Observation", y = "Density", title = "Histogram of Simulation Means")
+g
+
+#test <- matrix(c("The mean of the sample means:", as.character(mean(means)),"The hypothecitucal mean:", as.character(1/lambda)),2)
+
+#test<-data.frame(c(as.character(mean(means)),as.character(1/lambda)),row.names = c("The mean of the sample means:","The hypothecitucal mean:"))
+#names(test)<-""
+
+#print(test) 
+print(c(paste("The mean of the sample means:", as.character(mean(means))),paste("The theoretical mean:", as.character(1/lambda))))
+```
+
+As we can see from the histogram of simulation means, the sample means appear to be pretty normally distributed around 5 which is the theoretical mean. We can also see from the overlaid theoretical and simulated means lines that our simulated mean is pretty good! After 1000 observations is is only .0119 off, which we should expect to shrink if we were to coninue this exparement to infinity.
+
+```{r echo=FALSE}
+cum_means <-cumsum(means)/(1:num_sim)
+g <- ggplot(data.frame(x = 1 : num_sim, y = cum_means), aes(x = x, y = y))
+g <- g + geom_hline(yintercept = 1/lambda) + geom_line(size = 1)
+g <- g + labs(x = "Number of observations", y = "Cumulative mean", title = "Simulation Means Converge to Theoretical Mean")
+g
+```
+
+To be further certain that the sample mean will continue to approach the theoretical mean, we can put a line at the theoretical mean of 5 (1/lambda) and plot the means as each observation's mean from our simulation is added to the simulated mean. As we can see above, the more observations we have the more the simulated mean closes in on the theoretical mean.
+
+### Sample Variance versus Theoretical Variance
+```{r echo =FALSE}
+sim_mean_var <- var(means)
+theo_mean_var <- (1/lambda)/sqrt(40)
+
+print(c(paste("The varience of the means is:",as.character(sim_mean_var)),paste("The theoretical standard error is:", as.character(theo_mean_var))))
+```
+We can see that the varience of the means is pretty close to the standard error. Also we can expect the varience of sample means to approach the standard error, as we gain a better understanding of the variabilty by adding more samples (try rerunning the simulation with 100 and 10000 num_sim to see).
+
+```{r echo=FALSE, two_plots_same_size_side_by_side, fig.width=3, fig.height=3.5}
+g <- ggplot(data.frame(vars), aes(x = vars)) + geom_histogram(alpha = .80, binwidth=5, colour = "black",aes(y = ..density..)) 
+g <- g + geom_vline(aes(xintercept=(1/lambda)^2, color="Theoretical Variance", linetype="Theoretical Variance"), size=2)
+g <- g + geom_vline(aes(xintercept=mean(vars), color="Simulated Variance", linetype="Simulated Variance"), size=2)
+g <- g + labs(x = "Varience of Observation", y = "Density", title = "Histogram of 
+Simulation Variences")
+g
+
+cum_vars <-cumsum(vars)/(1:num_sim)
+g <- ggplot(data.frame(x = 1 : num_sim, y = cum_vars), aes(x = x, y = y))
+g <- g + geom_hline(yintercept = (1/lambda)^2 ) + geom_line(size = 1)
+g <- g + labs(x = "Number of observations", y = "Cumulative Varience", title = "Simulated Variences Converge
+to Theoretical Varience")
+g
+```
+```{r echo=FALSE, eval= FALSE}
+print(c(paste("The mean of the sample variances:", as.character(mean(vars))),paste("The hypothecitucal varience:", as.character((1/lambda)^2 ))))
+
+```
+
+We can also explore the mean of our sample variences. We quickly see that while there are a few high varience observation (due to the nature of squaring a few bigger standard deviations), the simulated variences gather around the theoretical varience. With a simulated vaience 24.83 and a theoretical varience of 25. For this we should also expect the simulated variance to close in on the theoretical as we close in on infinity. (Grab the simulation and graph code and make num_sim bigger to see what I mean.)
+
+Much like above, we can take all of our vatiences and graph adding them to our averaged variance pool one at a time to see how the simulated variance closes in on the theoretical varience of 25 over time. 
+
+### Distribution
+```{r echo=FALSE, fig.width=6}
+g <- ggplot(data.frame(means), aes(x = means)) + geom_histogram(alpha = .80, binwidth=.3, colour = "black",aes(y = ..density..)) 
+g <- g + stat_function(fun = dnorm, size = 2, aes(color = "Theoretical Distribution"), args = list(mean=5,sd = 5/sqrt(40)),show_guide=TRUE)
+g <- g + stat_function(fun = dnorm, size = 2, linetype="dashed", aes(color = "Simulated Distribution"),args = list(mean=mean(means),sd = sd(means)))
+g <- g + labs(x = "Mean of Observation", y = "Density", title = "Histogram of Simulation Means with Distributions")
+g
+```
+
+To check the distribution, we can just plot the histrogram of our means from above, but include both the theoretical distribution and the simulated distribution(don't forget for theoretical we need the sd of means aka standard error). By doing this we can easily see that this distribution is aproximately normal for both our theoretical and simulated.
+
+
+# Appendix
+```{r eval=FALSE}
+library(ggplot2)
+```
+### Sample Mean versus Theoretical Mean
+```{r eval=FALSE}
+g <- ggplot(data.frame(means), aes(x = means)) + geom_histogram(alpha = .80, binwidth=.3, colour = "black",aes(y = ..density..)) 
+g <- g + geom_vline(aes(xintercept=mean(means), color="Simulated Mean", linetype="Simulated Mean"), size=1, show_guide=TRUE)
+g <- g + geom_vline(aes(xintercept=1/lambda, color="Theoretical Mean", linetype="Theoretical Mean"), size=1, show_guide=TRUE)
+g <- g + labs(x = "Mean of Observation", y = "Density", title = "Histogram of Simulation Means")
+g 
+
+print(c("The mean of the sample means:", as.character(mean(means))))
+print(c("The hypothecitucal mean:", as.character(1/lambda)))
+
+```
+
+```{r eval=FALSE}
+
+cum_means <-cumsum(means)/(1:num_sim)
+g <- ggplot(data.frame(x = 1 : num_sim, y = cum_means), aes(x = x, y = y))
+g <- g + geom_hline(yintercept = 1/lambda) + geom_line(size = 1)
+g <- g + labs(x = "Number of observations", y = "Cumulative mean", title = "Simulation Means Converge to Theoretical Mean")
+g
+
+```
+
+### Sample Variance versus Theoretical Variance
+```{r eval=FALSE}
+g <- ggplot(data.frame(vars), aes(x = vars)) + geom_histogram(alpha = .80, binwidth=5, colour = "black",aes(y = ..density..)) 
+g <- g + geom_vline(aes(xintercept=mean(vars), color="Simulated Variance", linetype="Simulated Mean"), size=1, show_guide=TRUE)
+g <- g + geom_vline(aes(xintercept=(1/lambda)^2, color="Theoretical vars", linetype="Theoretical Mean"), size=1, show_guide=TRUE)
+g <- g + labs(x = "Varience of Observation", y = "Density", title = "Histogram of Simulation Variences")
+g 
+```
+
+```{r eval=FALSE}
+cum_vars <-cumsum(vars)/(1:num_sim)
+g <- ggplot(data.frame(x = 1 : num_sim, y = cum_vars), aes(x = x, y = y))
+g <- g + geom_hline(yintercept = (1/lambda)^2 ) + geom_line(size = 1)
+g <- g + labs(x = "Number of observations", y = "Cumulative Varience", title = "Simulation Variences Converge to Theoretical Varience")
+g
+```
+
+### Distribution
+```{r eval=FALSE}
+g <- ggplot(data.frame(means), aes(x = means)) + geom_histogram(alpha = .80, binwidth=.3, colour = "black",aes(y = ..density..)) 
+g <- g + stat_function(fun = dnorm, size = 2, aes(color = "Theoretical Distribution"), args = list(mean=5,sd = 5/sqrt(40)),show_guide=TRUE)
+g <- g + stat_function(fun = dnorm, size = 2, linetype="dashed", aes(color = "Simulated Distribution"),args = list(mean=mean(means),sd = sd(means)))
+g <- g + labs(x = "Mean of Observation", y = "Density", title = "Histogram of Simulation Means with Distributions")
+g
+```
+
+
