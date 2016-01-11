@@ -1,0 +1,12 @@
+base
+lattice
+ggplot2
+caret
+mlbench
+foreach
+iterators
+doMC
+printr
+plotly
+reshape2
+randomForest
