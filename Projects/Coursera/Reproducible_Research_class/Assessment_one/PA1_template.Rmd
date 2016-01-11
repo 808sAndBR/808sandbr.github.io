@@ -1,0 +1,151 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
+
+
+## Loading and preprocessing the data
+```{r}
+library(magrittr)
+get_read <- function(link){
+    if(!file.exists('activity.zip')){
+        download.file(link, 'activity.zip', method = 'curl')
+    }
+    
+    if(!file.exists('activity.csv')){
+        unzip('activity.zip')
+    }
+    
+    read.csv('activity.csv')
+}    
+
+process <- function(data){
+    data$date <- as.Date(data$date)
+    return(data)
+}
+
+activity_data <- get_read('https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip') %>%
+    process()
+```
+
+
+## What is mean total number of steps taken per day?
+```{r message=FALSE}
+library (dplyr)
+
+# Create data frame of daily total, mean, and median steps
+per_day <- function(data){
+    group_by(data, date) %>%
+        summarise(sum(steps,na.rm = TRUE))
+}
+
+# Call funtion to build df and set column names
+daily_steps <- per_day(activity_data)
+names(daily_steps) <- c('date', 'total_steps')
+
+# Create histogram of total daily steps
+hist(daily_steps$total_steps, xlab= 'Date', ylab = 'Steps', main = 'Daily total steps')
+
+```
+
+Mean:
+```{r}
+mean(daily_steps$total_steps)
+```
+Median:
+```{r}
+median(daily_steps$total_steps)
+```
+
+
+## What is the average daily activity pattern?
+```{r}
+# Create data frame of activity mean by interval
+avg_day <- function(data){
+    group_by(data, interval) %>%
+        summarise(mean(steps,na.rm = TRUE))
+}
+
+# Call function to get interval mean and name columns
+all_day <- avg_day(activity_data) 
+names(all_day) <- c('interval', 'mean_steps')
+
+# Create the plot
+with(all_day,
+     plot(interval,mean_steps, 
+          xlab="Interval", ylab= "Steps", 
+          main="Average Daily Activity Pattern", 
+          type="l"))
+
+# Find the max activity and add it to the chart
+max_active <- all_day[all_day$mean_steps ==
+                          max(all_day$mean_steps),]$interval
+abline(v = max_active,col="blue")
+```
+
+## Imputing missing values
+
+```{r}
+# Copy base data to work with
+filled <- activity_data
+
+# boolian for if steps are na (they are illmatic)
+nas <- is.na(filled$steps)
+
+# Get number of rows with missing values
+sum(nas)
+```
+
+I decided that the most acurate way to fill the data would be to fill in each interval with the mean for intervals calulated earlier. This should give us a good representation of a normal day/interval when data is missing.
+```{r}
+# Replace NA values with the matching interval mean calculated earlier
+filled[nas,]$steps <- 
+    match(filled[nas,]$interval, all_day$interval) %>%
+    all_day$mean_steps[.]
+
+# Call function from above to get sum, mean, and median per day
+filled_daily<-per_day(filled)
+names(filled_daily) <- c('date', 'total_steps')
+
+# Create histogram of total daily steps
+hist(filled_daily$total_steps, xlab= 'Date', ylab = 'Steps', main = "Daily Steps after filling data")
+```
+
+Mean:
+```{r}
+mean(filled_daily$total_steps)
+```
+Median:
+```{r}
+median(filled_daily$total_steps)
+```
+
+The histogram is mostly affected by transfering a lot of days with NAs which were in the 0-5000 steps section to the most common 10,000 to 15,000 section. 
+
+The mean and median are both increased which makes sense with the daily totals being larger from filling in the missing data.  
+
+## Are there differences in activity patterns between weekdays and weekends?
+
+```{r}
+library(ggplot2)
+
+filled$weekend <- 
+    weekdays(filled$date) == "Sunday" | 
+    weekdays(filled$date) == "Saturday"
+
+filled$wkdy_label <- ifelse(filled$weekend, "Weekend", "Weekday")
+
+avg_day_wkend <- function(data){
+    group_by(data, interval, wkdy_label) %>%
+        summarise(mean(steps,na.rm = TRUE))
+}
+
+wk_wkend <- avg_day_wkend(filled)
+names(wk_wkend)[3] <- 'steps'
+
+qplot(interval, steps, geom = "line", facets = wkdy_label ~ . , data= wk_wkend)
+
+```
+
