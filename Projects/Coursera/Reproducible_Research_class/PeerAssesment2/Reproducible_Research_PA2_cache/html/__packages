@@ -1,0 +1,6 @@
+base
+dplyr
+magrittr
+lubridate
+reshape2
+ggplot2
