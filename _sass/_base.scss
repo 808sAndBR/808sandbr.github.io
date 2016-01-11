@@ -206,6 +206,7 @@ pre {
     }
 }
 
+
 #about_pic {
     background: url(/img/scott.jpg) no-repeat;
     background-repeat: no-repeat;
@@ -217,8 +218,7 @@ pre {
     border-radius:150px;
     width:250px;
     height:250px;
-    float:left;
-    margin: 35px 25px 0px 0px;
+    margin: 30px auto;
 }
 
 a.about_text{
@@ -245,4 +245,8 @@ a.about_text{
         /* display:block;
         margin:auto; */
     }
+}
+
+#about_me {
+    float:left;
 }

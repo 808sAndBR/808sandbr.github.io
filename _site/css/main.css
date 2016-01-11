@@ -154,8 +154,7 @@ pre {
   border-radius: 150px;
   width: 250px;
   height: 250px;
-  float: left;
-  margin: 35px 25px 0px 0px; }
+  margin: 30px auto; }
 
 a.about_text {
   color: black;
@@ -173,6 +172,9 @@ a.about_text {
     width: 550px;
     /* display:block;
     margin:auto; */ }
+
+#about_me {
+  float: left; }
 
 /**
  * Site header
