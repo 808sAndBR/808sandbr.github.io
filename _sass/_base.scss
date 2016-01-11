@@ -102,6 +102,7 @@ a {
         color: $text-color;
         text-decoration: underline;
     }
+
 }
 
 
@@ -218,4 +219,30 @@ pre {
     height:250px;
     float:left;
     margin: 35px 25px 0px 0px;
+}
+
+a.about_text{
+    color: black;
+    font-weight: bold;
+    
+    &:visited {
+        color: darken(black, 15%);
+    }
+
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+#skills {
+    
+    padding: 5px;
+    margin: 5px;
+
+    > img {
+        width:550px;
+        /* display:block;
+        margin:auto; */
+    }
 }

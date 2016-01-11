@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Curriculum
+title: DS Curriculum
 permalink: /curriculum/
 ---
 
@@ -8,10 +8,10 @@ permalink: /curriculum/
 
   <h1 class="page-heading">Curriculum</h1>
   <p>
-    I studied finance at Miami University and always enjoyed doing the company analysis parts but realized that overall finance wasn't for me. I then got interested in learning to code after moving to SF (as I am sure many people do) and started learning python, django, and enough frontend to get by a while ago. After realizing I enjoy working with data and my favorite projects at work are always analytical, I started getting serious about learning data science in June.    
+    I studied finance at Miami University and always enjoyed doing the company analysis parts but realized that overall finance wasn't for me. I then got interested in learning to code after moving to SF (as I'm sure many people do) and started learning python, django, and enough frontend to get by a while ago. After realizing I enjoy working with data and my favorite projects at work are always analytical, I started getting serious about learning data science in June.    
   </p>
   <p>
-    This is my self-study data science curriculum. So far it has centered around the <a href="https://www.coursera.org/specializations/jhu-data-science">John Hopkins Data Science Specialization</a> on Coursera (currently on class 9 of 10), suplimented with various books and other online classes/tutorials.
+    This is my self-made data science curriculum. So far it has centered around the <a href="https://www.coursera.org/specializations/jhu-data-science">John Hopkins Data Science Specialization</a> on Coursera (currently on class 9 of 10), suplimented with various books and other online classes/tutorials.
   </p>
   <div class = "row">
     <div class = "col-md-6">
@@ -70,6 +70,8 @@ permalink: /curriculum/
       <a href="http://smile.amazon.com/Best-American-Infographics-2015/dp/0544542703" target="_blank">The Best American Infographics 2015 </a>
     </div>
   </div>
-  <img src="/img/skills.png" style="width:550px;">
+  <div id = 'skills'>
+    <img class="text-center" src="/img/skills.png">
+  </div>
 </div>
 

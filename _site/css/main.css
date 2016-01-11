@@ -157,6 +157,23 @@ pre {
   float: left;
   margin: 35px 25px 0px 0px; }
 
+a.about_text {
+  color: black;
+  font-weight: bold; }
+  a.about_text:visited {
+    color: black; }
+  a.about_text:hover {
+    color: black;
+    text-decoration: underline; }
+
+#skills {
+  padding: 5px;
+  margin: 5px; }
+  #skills > img {
+    width: 550px;
+    /* display:block;
+    margin:auto; */ }
+
 /**
  * Site header
  */
