@@ -55,7 +55,6 @@ ggplot(data = skills, aes(x = skill_list, y = skill_level)) +
         axis.ticks= element_blank(),
         plot.title = element_text(size = rel(2), vjust = -2)
         )
-    par(mar=c(0,0,0,0))
 
 ggsave("../../../img/skills.png")
 #FAA43A - orange
