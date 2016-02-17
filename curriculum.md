@@ -8,7 +8,7 @@ permalink: /curriculum/
 
   <h1 class="page-heading">Curriculum</h1>
   <p>
-    I studied finance at Miami University and always enjoyed doing the company analysis parts but realized that overall finance wasn't for me. I then got interested in learning to code after moving to SF (as I'm sure many people do) and started learning python, django, and enough frontend to get by a while ago. After realizing I enjoy working with data and my favorite projects at work are always analytical, I started getting serious about learning data science in June.    
+    I studied finance at Miami University and always enjoyed doing the company analysis parts but realized that overall finance wasn't for me. I then became interested in learning to code after moving to SF (as I'm sure many people do) and started learning python, django, and enough frontend to get by a while ago. After realizing I enjoy working with data and my favorite projects at work are always analytical, I began getting serious about learning data science in June.    
   </p>
   <p>
     This is my self-made data science curriculum. So far it has centered around the <a href="https://www.coursera.org/specializations/jhu-data-science">John Hopkins Data Science Specialization</a> on Coursera (currently completed 9 of 10 classes), suplimented with various books and other online classes/tutorials.
