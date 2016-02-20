@@ -23,6 +23,14 @@
             {% include icon-twitter.html username=site.twitter_username %}
           </li>
           {% endif %}
+
+          {% if site.linkedin_username %}
+            <li>
+              <a href="https://linkedin.com/in/{{ site.linkedin_username }}">
+                <i class="fa fa-linkedin-square"></i> scottbrenstuhl
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
 

@@ -177,6 +177,13 @@ a.about_text {
   float: left; }
 
 /**
+ * Change Linkedin Logo to gray
+ */
+.fa {
+  color: gray;
+  margin: 1px; }
+
+/**
  * Site header
  */
 .site-header {
