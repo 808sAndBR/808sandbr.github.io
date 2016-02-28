@@ -1,17 +1,19 @@
 ---
 layout: page
-title: Portfolio
-permalink: /portfolio/
+title: Projects
+permalink: /projects/
 ---
 
 <div class="home">
 
-  <ul class="post-list">
+  <ul class="post">
     {% for post in site.posts %}
       {%  if post.categories contains 'Post' %}
       <li>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        <p> {{post.description}}</p>
+        <p>
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}:</a>
+          {{post.description}}
+        </p>
       </li>
       {% endif %}
     {% endfor %}

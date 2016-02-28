@@ -1,0 +1,11 @@
+Add post for:
+	Reproducable Research (Project 2) order the bars
+	Statistical Inference (both of them) Fix the mean line
+	Getting and Cleaning data (maybe)
+	
+	Kaggle script of the week
+
+Finish or write posts for:
+	Presidential Canidate Twitter data
+	How Kanye lyrics have changed
+	
