@@ -3,7 +3,7 @@ layout: post
 title:  "Storm Events Impact"
 date:   2015-9-15 22:09:22 -0800
 categories: Coursera 
-description: For the Reproducible Research class I used the NOAA storm data to explore the impact of storm events since 1996.
+description: For the reproducible research class I used the NOAA storm data to explore the impact of storm events since 1996.
 ---
 
 <html xmlns="http://www.w3.org/1999/xhtml">

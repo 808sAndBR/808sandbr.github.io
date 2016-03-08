@@ -46,10 +46,8 @@ fill_colors <- c("#5DA5DA","#5DA5DA","#5DA5DA",
                  "#5DA5DA","#5DA5DA","#5DA5DA", "#B276B2")
 
 ggplot(data = skills, aes(x = skill_list, y = skill_level)) +
-    #scale_y_discrete(breaks = 1:5, labels = levels) +
     scale_y_continuous(breaks = 1:5, labels = levels)+
     labs(title = 'My Current Skill Set', x = '', y = '')+
-    #labs(x = '', y = '')+
     geom_bar(stat="identity", fill = fill_colors)+
     theme(panel.grid.major = element_line(colour = "gray90", linetype = "longdash"),
           panel.grid.major.x = element_blank(),
@@ -58,14 +56,7 @@ ggplot(data = skills, aes(x = skill_list, y = skill_level)) +
           panel.border = element_blank(),
           axis.ticks= element_blank(),
           plot.title = element_text(size = rel(2), vjust=1))
- ?scale_y_discrete
-          #     theme(panel.grid.major = element_blank(),
-#         #panel.grid.minor = element_blank(),
-#         #panel.border = element_blank(),
-#         #panel.background = element_blank(),
-#         axis.ticks= element_blank(),
-#         plot.title = element_text(size = rel(2), vjust = -2)
-#         )
+
 
 ggsave("../../../img/skills.png")
 #FAA43A - orange
