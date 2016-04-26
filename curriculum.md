@@ -39,6 +39,7 @@ permalink: /curriculum/
       <div class = "col-md-6">
         <h4>Probability and Statistics</h4>
         <a href="https://www.coursera.org/account/accomplishments/records/4WFSFQTL5YR6">Data Science Capstone (Coursera)</a>
+        <br>
         <a href = "https://www.coursera.org/account/accomplishments/records/tZS97X9vhF3PbBkA">Statistical Inference (Coursera)</a>
         <br>
         <a href = "https://www.coursera.org/account/accomplishments/records/EMP99FGKnfv9cGYm">Regression Models (Coursera)</a>
