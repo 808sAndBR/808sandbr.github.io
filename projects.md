@@ -5,8 +5,8 @@ permalink: /projects/
 ---
 
 <div class="home">
-<h5>An under construction icon from the 90s would really be the most appropriate thing here.</h5>
-<p>Hoping to finish up my backlog of posts about projects in the near future, lot’s of work to get done for now though!</p>
+<h4>An under construction icon from the 90s would really be the most appropriate thing here.</h4>
+<p>Hoping to finish up my backlog of posts about my finished projects in the near future, lot’s of work to get done for now though!</p>
 <br>
   <ul class="post">
     {% for post in site.posts %}
