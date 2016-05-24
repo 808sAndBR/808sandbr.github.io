@@ -16,13 +16,13 @@ permalink: /curriculum/
     <div class = "row">
       <div class = "col-md-6">
         <h4>Coding</h4>
-        <a href = "https://www.coursera.org/account/accomplishments/records/T77NasEGtGjZR5BM">R Programming (Coursera)</a>
+        <a href = "https://www.coursera.org/account/accomplishments/records/T77NasEGtGjZR5BM" target="_blank">R Programming (Coursera)</a>
         <br>
         <a href="https://sqlschool.modeanalytics.com/" target="_blank">SQL School by Mode Analytics [In Progress]</a>
         <br>
         <a href="http://learnpythonthehardway.org/book/" target="_blank">Learn Python the Hard Way</a>
         <br>
-        <a href="http://smile.amazon.com/Data-Science-Scratch-Principles-Python/dp/149190142X">Data Science from Scratch: First Principals with Python</a>
+        <a href="http://smile.amazon.com/Data-Science-Scratch-Principles-Python/dp/149190142X" target="_blank">Data Science from Scratch: First Principals with Python</a>
       </div>
       <div class = "col-md-6">
         <h4>Data Analysis Process</h4>
@@ -30,38 +30,38 @@ permalink: /curriculum/
         <br>
         <a href="https://leanpub.com/artofdatascience" target="_blank">The Art of Data Science</a>
         <br>
-        <a href = "https://www.coursera.org/account/accomplishments/records/8tBwWfDMvB9Lt5E8">Getting and Cleaning Data (Coursera)</a>
+        <a href = "https://www.coursera.org/account/accomplishments/records/8tBwWfDMvB9Lt5E8" target="_blank">Getting and Cleaning Data (Coursera)</a>
         <br>
-        <a href = "https://www.coursera.org/account/accomplishments/records/abDRqhGfn9ZDvKAS">Reproducible Research (Coursera)</a>
+        <a href = "https://www.coursera.org/account/accomplishments/records/abDRqhGfn9ZDvKAS" target="_blank">Reproducible Research (Coursera)</a>
         <br>
-        <a href = "https://www.coursera.org/account/accomplishments/records/3N6G98R2GF9C">The Data Scientist’s Toolbox (Coursera)</a>
+        <a href = "https://www.coursera.org/account/accomplishments/records/3N6G98R2GF9C" target="_blank">The Data Scientist’s Toolbox (Coursera)</a>
       </div>
     </div>
     <div class = "row">
       <div class = "col-md-6">
         <h4>Probability and Statistics</h4>
-        <a href="https://www.coursera.org/account/accomplishments/records/4WFSFQTL5YR6">Data Science Capstone (Coursera)</a>
+        <a href="https://www.coursera.org/account/accomplishments/records/4WFSFQTL5YR6" target="_blank">Data Science Capstone (Coursera)</a>
         <br>
-        <a href = "https://www.coursera.org/account/accomplishments/records/tZS97X9vhF3PbBkA">Statistical Inference (Coursera)</a>
+        <a href = "https://www.coursera.org/account/accomplishments/records/tZS97X9vhF3PbBkA" target="_blank">Statistical Inference (Coursera)</a>
         <br>
-        <a href = "https://www.coursera.org/account/accomplishments/records/EMP99FGKnfv9cGYm">Regression Models (Coursera)</a>
+        <a href = "https://www.coursera.org/account/accomplishments/records/EMP99FGKnfv9cGYm" target="_blank">Regression Models (Coursera)</a>
         <br>
         <a href="http://smile.amazon.com/Cartoon-Guide-Statistics-Larry-Gonick/dp/0062731025/" target="_blank">The Cartoon Guide to Statistics</a>
       </div>
       <div class = "col-md-6">
         <h4>Machine Learning</h4>
-        <a href= "https://www.coursera.org/learn/machine-learning/"> Machine Learning (Andrew Ng: Coursera) [In Progress]</a>
+        <a href= "https://www.coursera.org/learn/machine-learning/" target="_blank"> Machine Learning (Andrew Ng: Coursera) [In Progress]</a>
         <br>
-        <a href= "https://www.coursera.org/account/accomplishments/records/r4AyQwyxtp4bTejz" >Practical Machine Learning (Coursera)</a>
+        <a href= "https://www.coursera.org/account/accomplishments/records/r4AyQwyxtp4bTejz" target="_blank">Practical Machine Learning (Coursera)</a>
         <br>
       </div>
     </div>
     <div class = "row">
       <div class = "col-md-6">  
           <h4>Visualization</h4>
-          <a href = "https://www.coursera.org/account/accomplishments/records/r4AyQwyxtp4bTejz">Developing Data Products (Coursera)</a>
+          <a href = "https://www.coursera.org/account/accomplishments/records/r4AyQwyxtp4bTejz" target="_blank">Developing Data Products (Coursera)</a>
           <br>
-          <a href = "https://www.coursera.org/account/accomplishments/records/U6y82RKKT6CBfbsL">Exploratory Data Analysis (Coursera)</a>
+          <a href = "https://www.coursera.org/account/accomplishments/records/U6y82RKKT6CBfbsL" target="_blank">Exploratory Data Analysis (Coursera)</a>
           <br>
           <a href = "http://smile.amazon.com/dp/0393347281/" target="_blank">WSJ Guide to Information Graphics: The Dos and Dont's of Presenting Data Facts and Figures</a>
       </div>
@@ -77,9 +77,10 @@ permalink: /curriculum/
       </div>
     </div>
   </div>
-
+<!--
   <div id = 'skills'>
     <img class="text-center" src="/img/skills.png">
   </div>
+-->
 </div>
 
