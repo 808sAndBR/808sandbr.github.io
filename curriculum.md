@@ -26,7 +26,7 @@ permalink: /curriculum/
       </div>
       <div class = "col-md-6">
         <h4>Data Analysis Process</h4>
-        <a href="https://www.edx.org/course/analytics-edge-mitx-15-071x-2" target="_blank">The Analytics Edge (MITx)[In Progress]</a>
+        <a href="https://www.edx.org/course/analytics-edge-mitx-15-071x-2" target="_blank">The Analytics Edge (MITx)</a>
         <br>
         <a href="https://leanpub.com/artofdatascience" target="_blank">The Art of Data Science</a>
         <br>
