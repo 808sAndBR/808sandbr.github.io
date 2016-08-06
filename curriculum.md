@@ -46,6 +46,8 @@ permalink: /curriculum/
         <br>
         <a href = "https://www.coursera.org/account/accomplishments/records/EMP99FGKnfv9cGYm" target="_blank">Regression Models (Coursera)</a>
         <br>
+        <a href = "https://www.khanacademy.org/" target="_blank">Khan Academy</a>
+        <br>
         <a href="http://smile.amazon.com/Cartoon-Guide-Statistics-Larry-Gonick/dp/0062731025/" target="_blank">The Cartoon Guide to Statistics</a>
       </div>
       <div class = "col-md-6">
